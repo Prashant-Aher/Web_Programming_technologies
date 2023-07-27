@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+    <div>
+        <label for="number1">Enter Number 1:</label>
+        <input type="number" id="number1" required>
+    </div>
+    <div>
+        <label for="number2">Enter Number 2:</label>
+        <input type="number" id="number2" required>
+    </div>
+    <div>
+        <button id="multiplyBtn">Multiply</button>
+        <button id="divideBtn">Divide</button>
+    </div>
+    <div>
+        <label for="result">Result:</label>
+        <span id="result"></span>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#multiplyBtn').on('click', function() {
+                calculate('multiply');
+            });
+
+            $('#divideBtn').on('click', function() {
+                calculate('divide');
+            });
+
+            function calculate(operation) {
+                var num1 = parseFloat($('#number1').val());
+                var num2 = parseFloat($('#number2').val());
+
+                // Validate inputs
+                if (isNaN(num1) || isNaN(num2)) {
+                    alert('Please enter valid numbers for both fields.');
+                    return;
+                }
+
+                // Perform the calculation
+                var result;
+                if (operation === 'multiply') {
+                    result = num1 * num2;
+                } else if (operation === 'divide') {
+                    if (num2 === 0) {
+                        alert('Cannot divide by zero.');
+                        return;
+                    }
+                    result = num1 / num2;
+                }
+
+                // Display the result
+                $('#result').text(result);
+            }
+        });
+    </script>
+</body>
+</html>
