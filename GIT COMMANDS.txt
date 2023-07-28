@@ -15,8 +15,6 @@ Now, commit the changes you've added to the staging area:
 git commit -m "Initial Commit"
 
 
-Replace "Your commit message here" with a brief description of the changes you made in the folder.
-
 Connect to a remote repository:
 Before you can push your changes, you need to link your local repository to a remote repository. This is usually done once at the beginning:
 
@@ -27,7 +25,7 @@ git remote add origin <remote_repository_url>
 Push the changes to the remote repository:
 Finally, use the following command to push the changes to the remote repository:
 
-
 git push -u origin master
+
 The -u option is used only for the first push, and it sets the default upstream branch for subsequent pushes. After the initial push, 
 you can use git push to push changes in the future.

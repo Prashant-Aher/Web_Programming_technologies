@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Div Block</title>
+    <style>
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            display: inline-block;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .bigger {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="block" id="myBlock">Hover over me!</div>
+
+    <script>
+        const block = document.getElementById("myBlock");
+
+        block.addEventListener("mouseover", function() {
+            this.classList.add("bigger");
+        });
+
+        block.addEventListener("mouseleave", function() {
+            this.innerText = "Done";
+            this.classList.remove("bigger");
+        });
+
+        block.addEventListener("click", function() {
+            this.style.backgroundColor = "red";
+            this.style.marginLeft = "50px"; // You can adjust this value to move the block further right.
+        });
+    </script>
+</body>
+</html>
