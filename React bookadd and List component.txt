@@ -1,0 +1,140 @@
+BookFormComponent.js (Component for adding books):
+
+
+
+import React, { useState } from 'react';
+
+const BookFormComponent = ({ onAddBook }) => {
+  const [bookData, setBookData] = useState({
+    isbn: '',
+    bookName: '',
+    author: '',
+    price: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setBookData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAddBook(bookData);
+    setBookData({
+      isbn: '',
+      bookName: '',
+      author: '',
+      price: '',
+    });
+  };
+
+  return (
+    <div>
+      <h2>Add Book</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>ISBN no.:</label>
+          <input type="text" name="isbn" value={bookData.isbn} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Book Name:</label>
+          <input type="text" name="bookName" value={bookData.bookName} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Author:</label>
+          <input type="text" name="author" value={bookData.author} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Price:</label>
+          <input type="text" name="price" value={bookData.price} onChange={handleChange} required />
+        </div>
+        <button type="submit">Add Book</button>
+      </form>
+    </div>
+  );
+};
+export default BookFormComponent;
+
+
+
+
+
+
+
+
+
+BookListComponent.js (Component to display book list in a table):
+
+
+
+import React from 'react';
+
+const BookListComponent = ({ bookList }) => {
+  return (
+    <div>
+      <h2>Book List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ISBN no.</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bookList.map((book, index) => (
+            <tr key={index}>
+              <td>{book.isbn}</td>
+              <td>{book.bookName}</td>
+              <td>{book.author}</td>
+              <td>{book.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default BookListComponent;
+
+
+
+
+
+App.js (Main component to use the BookFormComponent and BookListComponent):
+
+
+
+import React, { useState } from 'react';
+import BookFormComponent from './BookFormComponent';
+import BookListComponent from './BookListComponent';
+
+const App = () => {
+  const [books, setBooks] = useState([]);
+
+  const handleAddBook = (newBook) => {
+    setBooks((prevBooks) => [...prevBooks, newBook]);
+  };
+
+  return (
+    <div>
+      <BookFormComponent onAddBook={handleAddBook} />
+      <BookListComponent bookList={books} />
+    </div>
+  );
+};
+
+export default App;
+
+
+
+
+
+create all these components in separate files in React project. 
+The App.js file is the main entry point where both the BookFormComponent and BookListComponent are used. 
+When you enter book details in the form, they will be added to the list and displayed in the table below.
